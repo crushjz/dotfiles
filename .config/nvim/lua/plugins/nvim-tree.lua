@@ -7,6 +7,9 @@ require('nvim-tree').setup {
       'node_modules',
     },
   },
+  filters = {
+    custom = { '.git' },
+  },
 }
 
 vim.keymap.set('n', '<Tab><Tab>', ':NvimTreeFindFile<CR>', { desc = 'Open NvimTree and focus the file in the current bufname' })
