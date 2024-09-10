@@ -163,7 +163,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'ibhagwan/fzf-lua'
 
 -- Plugins
--- Plug 'rmagatti/auto-session'
 Plug 'stevearc/conform.nvim'
 Plug 'ruifm/gitlinker.nvim'
 Plug 'williamboman/mason.nvim'
@@ -175,7 +174,6 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
--- Plug 'matze/vim-move'
 Plug 'folke/which-key.nvim'
 Plug 'dstein64/vim-startuptime'
 
@@ -183,7 +181,6 @@ vim.call 'plug#end'
 
 --------------------------------------------------------------------------------
 
--- require 'plugins.auto-session'
 require 'plugins.conform'
 require 'plugins.gitsigns'
 require 'plugins.gitlinker'
@@ -192,4 +189,3 @@ require 'plugins.nvim-possesion'
 require 'plugins.nvim-tree'
 require 'plugins.nvim-treesitter'
 require 'plugins.telescope'
---require('plugins.vim-move')
