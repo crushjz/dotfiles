@@ -175,12 +175,15 @@ Plug 'github/copilot.vim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
 Plug 'folke/which-key.nvim'
+-- Colorschemes
+Plug 'sainnhe/everforest'
 Plug 'dstein64/vim-startuptime'
 
 vim.call 'plug#end'
 
 --------------------------------------------------------------------------------
 
+vim.cmd [[colorscheme everforest]]
 require 'plugins.conform'
 require 'plugins.gitsigns'
 require 'plugins.gitlinker'
