@@ -174,6 +174,7 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/which-key.nvim'
 -- Colorschemes
 Plug 'sainnhe/everforest'
@@ -192,3 +193,4 @@ require 'plugins.nvim-possesion'
 require 'plugins.nvim-tree'
 require 'plugins.nvim-treesitter'
 require 'plugins.telescope'
+require 'plugins.lualine'
