@@ -1,16 +1,11 @@
 require('telescope').setup {
   defaults = {
-    -- prompt_position = 'top',
-    -- layout_strategy = 'horizontal',
-    -- sorting_strategy = 'ascending',
-    -- use_less = false,
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
+    sorting_strategy = 'ascending',
+    layout_config = {
+      prompt_position = 'top',
+    },
     mappings = {
       i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ['<C-h>'] = 'which_key',
       },
     },
