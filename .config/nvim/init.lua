@@ -124,8 +124,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Split (for some reason we need to specify the Shift key)
-vim.keymap.set('n', '<C-S-L>', ':vsplit<CR>', { desc = 'Split vertically' })
-vim.keymap.set('n', '<C-S-J>', ':split<CR>', { desc = 'Split horizontally' })
+vim.keymap.set('n', '<C-S-l>', ':vsplit<CR>', { desc = 'Split vertically' })
+vim.keymap.set('n', '<C-S-j>', ':split<CR>', { desc = 'Split horizontally' })
 
 -- Resize panes using Alt + hjkl
 -- Requires iterm2 setting: Profiles -> Keys -> Change Left Option key & Right Option key from normal to Esc+
