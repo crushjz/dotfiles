@@ -1,3 +1,12 @@
+local function filename_first(_, path)
+  local tail = vim.fs.basename(path)
+  local parent = vim.fs.dirname(path)
+  if parent == '.' then
+    return tail
+  end
+  return string.format('%s\t\t%s', tail, parent)
+end
+
 require('telescope').setup {
   defaults = {
     sorting_strategy = 'ascending',
@@ -15,6 +24,7 @@ require('telescope').setup {
     find_files = {
       -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
       find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+      path_display = filename_first,
     },
     live_grep = {
       additional_args = {
