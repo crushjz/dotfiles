@@ -2,7 +2,7 @@ local vim = vim
 require('mason').setup()
 
 require('mason-lspconfig').setup {
-  ensure_installed = { 'tsserver', 'lua_ls', 'eslint' },
+  ensure_installed = { 'tsserver', 'lua_ls', 'eslint', 'stylelint_lsp' },
 }
 
 local function add_desc(base_opts, desc)
@@ -53,6 +53,17 @@ lspconfig.eslint.setup {
       command = 'EslintFixAll',
     })
   end,
+}
+
+lspconfig.stylelint_lsp.setup {
+  filetypes = {
+    'css',
+    'less',
+    'scss',
+    'sugarss',
+    'vue',
+    'wxss',
+  },
 }
 
 -- Lua
