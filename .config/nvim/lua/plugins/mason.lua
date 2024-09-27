@@ -2,7 +2,7 @@ local vim = vim
 require('mason').setup()
 
 require('mason-lspconfig').setup {
-  ensure_installed = { 'tsserver', 'lua_ls', 'eslint', 'stylelint_lsp' },
+  ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'stylelint_lsp' },
 }
 
 local function add_desc(base_opts, desc)
@@ -16,7 +16,7 @@ end
 
 local lspconfig = require 'lspconfig'
 -- TypeScript / JavaScript
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, noremap = true, silent = true }
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, add_desc(opts, 'Go to definition'))
