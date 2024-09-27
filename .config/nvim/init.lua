@@ -176,6 +176,7 @@ Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/which-key.nvim'
+Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
 -- Colorschemes
 Plug 'sainnhe/everforest'
 Plug 'dstein64/vim-startuptime'
