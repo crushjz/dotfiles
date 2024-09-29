@@ -178,6 +178,14 @@ Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/which-key.nvim'
 Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
+-- Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 -- Colorschemes
 Plug 'sainnhe/everforest'
 Plug 'dstein64/vim-startuptime'
@@ -197,3 +205,4 @@ require 'plugins.nvim-treesitter'
 require 'plugins.nvim-treesitter-textobjects'
 require 'plugins.telescope'
 require 'plugins.lualine'
+require 'plugins.completion'

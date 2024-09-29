@@ -59,8 +59,11 @@ local function on_attach(client, bufnr)
   end
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- TypeScript / JavaScript
 lspconfig.ts_ls.setup {
+  capabilities = capabilities,
   on_attach = on_attach,
 }
 
@@ -87,6 +90,7 @@ lspconfig.stylelint_lsp.setup {
 
 -- Lua
 lspconfig.lua_ls.setup {
+  capabilities = capabilities,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
