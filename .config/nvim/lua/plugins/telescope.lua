@@ -1,3 +1,5 @@
+local custom_pickers = require 'plugins.telescope-pickers'
+
 local function filename_first(_, path)
   local tail = vim.fs.basename(path)
   local parent = vim.fs.dirname(path)
@@ -6,6 +8,9 @@ local function filename_first(_, path)
   end
   return string.format('%s\t\t%s', tail, parent)
 end
+
+local actions = require 'telescope.actions'
+local actions_layout = require 'telescope.actions.layout'
 
 require('telescope').setup {
   defaults = {
@@ -16,6 +21,12 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<C-h>'] = 'which_key',
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
+        ['?'] = actions_layout.toggle_preview,
+      },
+      n = {
+        ['?'] = actions_layout.toggle_preview,
       },
     },
   },
@@ -32,22 +43,27 @@ require('telescope').setup {
         '--glob',
         '!**/.git/*',
       },
-      -- mappings = {
-      --   i = {
-      --     ['<c-f>'] = custom_pickers.actions.set_extension,
-      --     ['<c-l>'] = custom_pickers.actions.set_folders,
-      --   },
-      -- },
+      mappings = {
+        i = {
+          ['<C-f>'] = custom_pickers.actions.set_extension,
+          ['<C-l>'] = custom_pickers.actions.set_folders,
+        },
+      },
     },
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = 'smart_case', -- or "ignore_case" or "respect_case". Default is "smart_case"
+    },
   },
 }
+
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require('telescope').load_extension 'fzf'
 
 local builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>s', builtin.find_files, { desc = '[S]earch files' })

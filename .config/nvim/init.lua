@@ -175,6 +175,7 @@ Plug 'github/copilot.vim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
+Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/which-key.nvim'
 Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
@@ -186,6 +187,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
 -- Colorschemes
 Plug 'sainnhe/everforest'
 Plug 'dstein64/vim-startuptime'
