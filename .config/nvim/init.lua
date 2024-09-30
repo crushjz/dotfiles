@@ -129,6 +129,7 @@ vim.keymap.set('n', '<C-S-j>', ':split<CR>', { desc = 'Split horizontally' })
 
 -- Resize panes using Alt + hjkl
 -- Requires iterm2 setting: Profiles -> Keys -> Change Left Option key & Right Option key from normal to Esc+
+-- Requires kitty setting: macos_option_as_alt yes
 vim.keymap.set('n', '<M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<M-j>', ':resize +3<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<M-k>', ':resize -2<CR>', { noremap = true, silent = true })
