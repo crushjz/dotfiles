@@ -89,6 +89,13 @@ vim.opt.smartindent = true
 -- Recommended for auto-session
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
+-- Enable folding
+vim.o.foldmethod = 'indent'
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 -- disable netrw at the very start of your init.lua (required for nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
