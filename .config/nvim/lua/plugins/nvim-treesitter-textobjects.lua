@@ -1,3 +1,5 @@
+local ts_repeat_move = require 'nvim-treesitter.textobjects.repeatable_move'
+
 require('nvim-treesitter.configs').setup {
   textobjects = {
     select = {
@@ -32,5 +34,35 @@ require('nvim-treesitter.configs').setup {
         ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
       },
     },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        [']]'] = { query = '@class.outer', desc = 'Next class start' },
+        [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
+      },
+      goto_next_end = {
+        [']['] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[['] = '@class.outer',
+      },
+      goto_previous_end = {
+        ['[]'] = '@class.outer',
+      },
+      -- Below will go to either the start or the end, whichever is closer.
+      -- Use if you want more granular movements
+      goto_next = {
+        [']m'] = '@function.outer',
+      },
+      goto_previous = {
+        ['[m'] = '@function.outer',
+      },
+    },
   },
 }
+
+-- Repeat movement with ; and ,
+-- ensure ; goes forward and , goes backward regardless of the last direction
+vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
+vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
