@@ -11,6 +11,7 @@ require('conform').setup {
     css = { 'prettier' },
     html = { 'prettier' },
     handlebars = { 'prettier' },
+    json = { 'prettier' },
   },
 }
 
