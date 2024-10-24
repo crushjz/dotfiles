@@ -198,7 +198,6 @@ Plug 'hrsh7th/vim-vsnip'
 
 -- Colorschemes
 Plug 'sainnhe/everforest'
-Plug 'dstein64/vim-startuptime'
 
 vim.call 'plug#end'
 
