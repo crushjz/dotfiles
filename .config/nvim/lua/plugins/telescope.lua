@@ -1,13 +1,6 @@
 local custom_pickers = require 'plugins.telescope-pickers'
 
-local function filename_first(_, path)
-  local tail = vim.fs.basename(path)
-  local parent = vim.fs.dirname(path)
-  if parent == '.' then
-    return tail
-  end
-  return string.format('%s\t\t%s', tail, parent)
-end
+local utils = require 'plugins.telescope-utils'
 
 local actions = require 'telescope.actions'
 local actions_layout = require 'telescope.actions.layout'
@@ -20,10 +13,12 @@ require('telescope').setup {
     },
     mappings = {
       i = {
-        ['<C-h>'] = 'which_key',
+        -- ['<C-h>'] = 'which_key',
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
         ['?'] = actions_layout.toggle_preview,
+        ['<C-n>'] = actions.cycle_history_next,
+        ['<C-p>'] = actions.cycle_history_prev,
       },
       n = {
         ['?'] = actions_layout.toggle_preview,
@@ -31,11 +26,14 @@ require('telescope').setup {
     },
   },
   pickers = {
-    -- Default configuration for builtin pickers goes here:
     find_files = {
-      -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-      find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
-      path_display = filename_first,
+      find_command = utils.find_command,
+      path_display = utils.filename_first,
+      mappings = {
+        i = {
+          ['<C-l>'] = custom_pickers.actions.set_search_dir,
+        },
+      },
     },
     live_grep = {
       additional_args = {
@@ -66,7 +64,9 @@ require('telescope').setup {
 require('telescope').load_extension 'fzf'
 
 local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>s', builtin.find_files, { desc = '[S]earch files' })
+vim.keymap.set('n', '<leader>ss', builtin.find_files, { desc = '[s]earch files' })
 vim.keymap.set('n', '<leader>S', builtin.live_grep, { desc = '[S]earch by grep' })
--- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
--- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>sw', builtin.oldfiles, { desc = 'Search [W]oldfiles' })
+vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Search [B]uffers' })
+vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search [H]elp tags' })
+vim.keymap.set('n', '<leader>sg', builtin.git_status, { desc = 'Search [G]it files' })
