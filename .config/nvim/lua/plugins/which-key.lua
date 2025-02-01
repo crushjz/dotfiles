@@ -1,11 +1,9 @@
-require('which-key').setup {
-  keys = {
-    {
-      '<leader>?',
-      function()
-        require('which-key').show { global = false }
-      end,
-      desc = 'Buffer Local Keymaps (which-key)',
-    },
-  },
+local wk = require 'which-key'
+
+wk.setup {}
+
+wk.add {
+  { '<leader>s', group = '[S]earch' },
+  { '<leader>h', group = 'Session [H]istory' },
+  { '<leader>u', group = 'Git' },
 }
