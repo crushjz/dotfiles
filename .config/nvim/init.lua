@@ -188,6 +188,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/which-key.nvim'
 Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
 Plug 'kylechui/nvim-surround'
+Plug 'windwp/nvim-autopairs'
 -- Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -218,3 +219,4 @@ require 'plugins.lualine'
 require 'plugins.completion'
 require 'plugins.surround'
 require 'plugins.which-key'
+require 'plugins.autopairs'
