@@ -3,6 +3,10 @@ require('lualine').setup {
     theme = 'everforest',
   },
   sections = {
+    lualine_b = {
+      'diff',
+      'diagnostic',
+    },
     lualine_c = {
       {
         'filename',
