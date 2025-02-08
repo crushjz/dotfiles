@@ -26,7 +26,7 @@ end
 
 local lspconfig = require 'lspconfig'
 
-local function on_attach(client, bufnr)
+local function on_ts_ls_attach(client, bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true }
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, add_desc(opts, 'Go to definition'))
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, add_desc(opts, 'Hover'))
@@ -65,7 +65,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- TypeScript / JavaScript
 lspconfig.ts_ls.setup {
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = on_ts_ls_attach,
 }
 
 -- Eslint
