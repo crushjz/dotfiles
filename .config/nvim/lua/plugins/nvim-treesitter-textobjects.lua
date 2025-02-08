@@ -38,25 +38,12 @@ require('nvim-treesitter.configs').setup {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        [']]'] = { query = '@class.outer', desc = 'Next class start' },
+        [']m'] = { query = '@function.outer', desc = 'Next function start' },
         [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
       },
-      goto_next_end = {
-        [']['] = '@class.outer',
-      },
       goto_previous_start = {
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[]'] = '@class.outer',
-      },
-      -- Below will go to either the start or the end, whichever is closer.
-      -- Use if you want more granular movements
-      goto_next = {
-        [']m'] = '@function.outer',
-      },
-      goto_previous = {
-        ['[m'] = '@function.outer',
+        ['[m'] = { query = '@function.outer', desc = 'Previous function start' },
+        ['[z'] = { query = '@fold', query_group = 'folds', desc = 'Previous fold' },
       },
     },
   },
