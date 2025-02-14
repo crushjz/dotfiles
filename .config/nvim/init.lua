@@ -167,6 +167,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'gennaro-tedesco/nvim-possession'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
+Plug('CopilotC-Nvim/CopilotChat.nvim', { ['branch'] = 'main' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
@@ -205,6 +206,7 @@ require 'plugins.nvim-treesitter-textobjects'
 require 'plugins.telescope'
 require 'plugins.lualine'
 require 'plugins.completion'
+require 'plugins.ai'
 require 'plugins.surround'
 require 'plugins.which-key'
 require 'plugins.autopairs'
