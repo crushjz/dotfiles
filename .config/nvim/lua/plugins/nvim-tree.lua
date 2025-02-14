@@ -12,4 +12,4 @@ require('nvim-tree').setup {
   },
 }
 
-vim.keymap.set('n', '<Tab><Tab>', ':NvimTreeFindFile<CR>', { desc = 'Open NvimTree and focus the file in the current bufname' })
+vim.keymap.set('n', '<leader><leader>', ':NvimTreeFindFile<CR>', { desc = 'Open NvimTree and focus the file in the current bufname' })
