@@ -124,7 +124,7 @@ lspconfig.lua_ls.setup {
       },
     })
   end,
-  on_attach = on_attach,
+  on_attach = on_ts_ls_attach,
   settings = {
     Lua = {},
   },
