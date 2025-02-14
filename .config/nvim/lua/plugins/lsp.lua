@@ -2,7 +2,6 @@ local vim = vim
 
 require('mason').setup()
 require('mason-lspconfig').setup {
-  ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'stylelint_lsp' },
   ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'stylelint_lsp', 'emmet_language_server' },
 }
 
@@ -91,7 +90,7 @@ lspconfig.stylelint_lsp.setup {
 
 -- Emmet
 lspconfig.emmet_language_server.setup {
-  filetypes = { 'html', 'javascriptreact', 'typescriptreact' },
+  filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'handlebars' },
 }
 
 -- Lua
