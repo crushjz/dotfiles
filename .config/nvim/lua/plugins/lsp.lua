@@ -1,9 +1,6 @@
 local vim = vim
 
 require('mason').setup()
-require('mason-lspconfig').setup {
-  ensure_installed = { 'lua_ls', 'ts_ls', 'eslint', 'stylelint_lsp', 'emmet_language_server' },
-}
 
 local function add_desc(base_opts, desc)
   local copy = {}
@@ -63,12 +60,14 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- TypeScript / JavaScript
 lspconfig.ts_ls.setup {
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   capabilities = capabilities,
   on_attach = on_ts_ls_attach,
 }
 
 -- Eslint
 lspconfig.eslint.setup {
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd('BufWritePost', {
       callback = function()
@@ -98,6 +97,7 @@ lspconfig.emmet_language_server.setup {
 -- Lua
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
+  filetypes = { 'lua' },
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
