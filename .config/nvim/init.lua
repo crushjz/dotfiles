@@ -132,6 +132,10 @@ vim.keymap.set('n', '<C-q>', ':q<CR>', { desc = 'Close current buffer' })
 vim.api.nvim_set_keymap('n', '[[', ':bprev<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', ']]', ':bnext<CR>', { desc = 'Next buffer', noremap = true, silent = true })
 
+-- Quickfix list: move next/prev
+vim.keymap.set('n', ']q', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '[q', '<cmd>cprev<CR>zz')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
