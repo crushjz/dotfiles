@@ -188,12 +188,13 @@ Plug 'hrsh7th/vim-vsnip'
 
 -- Colorschemes
 Plug 'sainnhe/everforest'
+Plug 'tinted-theming/tinted-vim'
 
 vim.call 'plug#end'
 
 --------------------------------------------------------------------------------
 
-vim.cmd [[colorscheme everforest]]
+vim.cmd [[colorscheme base16-gruvbox-dark-medium]]
 require 'plugins.conform'
 require 'plugins.gitsigns'
 require 'plugins.gitlinker'
