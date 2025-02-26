@@ -86,9 +86,6 @@ vim.opt.expandtab = true
 -- Enable auto-indent
 vim.opt.smartindent = true
 
--- Recommended for auto-session
-vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
-
 -- Enable folding
 vim.o.foldmethod = 'indent'
 vim.o.foldcolumn = '1'
@@ -167,7 +164,6 @@ Plug 'ruifm/gitlinker.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'gennaro-tedesco/nvim-possession'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug('CopilotC-Nvim/CopilotChat.nvim', { ['branch'] = 'main' })
@@ -202,7 +198,6 @@ require 'plugins.conform'
 require 'plugins.gitsigns'
 require 'plugins.gitlinker'
 require 'plugins.lsp'
-require 'plugins.nvim-possesion'
 require 'plugins.nvim-tree'
 require 'plugins.nvim-treesitter'
 require 'plugins.nvim-treesitter-textobjects'
