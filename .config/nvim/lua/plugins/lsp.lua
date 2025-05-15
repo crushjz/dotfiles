@@ -56,12 +56,10 @@ local function on_ts_ls_attach(client, bufnr)
   end
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- TypeScript / JavaScript
 lspconfig.ts_ls.setup {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  capabilities = capabilities,
   on_attach = on_ts_ls_attach,
 }
 
@@ -96,7 +94,6 @@ lspconfig.emmet_language_server.setup {
 
 -- Lua
 lspconfig.lua_ls.setup {
-  capabilities = capabilities,
   filetypes = { 'lua' },
   on_init = function(client)
     local path = client.workspace_folders[1].name

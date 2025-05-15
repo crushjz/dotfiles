@@ -178,13 +178,7 @@ Plug 'kylechui/nvim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug('mrjones2014/smart-splits.nvim', { ['tag'] = 'v1.0.0' })
 -- Completion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
+Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
 
 -- Colorschemes
 Plug 'sainnhe/everforest'

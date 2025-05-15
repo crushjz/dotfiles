@@ -1,45 +1,33 @@
-local cmp = require 'cmp'
+local blink = require 'blink.cmp'
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      vim.fn['vsnip#anonymous'](args.body)
-    end,
+blink.setup {
+  -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+  -- 'super-tab' for mappings similar to vscode (tab to accept)
+  -- 'enter' for enter to accept
+  -- 'none' for no mappings
+  --
+  -- All presets have the following mappings:
+  -- C-space: Open menu or open docs if already open
+  -- C-n/C-p or Up/Down: Select next/previous item
+  -- C-e: Hide menu
+  -- C-k: Toggle signature help (if signature.enabled = true)
+  --
+  -- See :h blink-cmp-config-keymap for defining your own keymap
+  keymap = { preset = 'default' },
+  appearance = {
+    nerd_font_variant = 'mono',
   },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+  completion = {
+    documentation = { auto_show = false },
+    accept = { auto_brackets = { enabled = false } },
   },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm { select = true },
+  cmdline = {
+    keymap = { preset = 'inherit' },
+    completion = { menu = { auto_show = true } },
   },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-  }, {
-    { name = 'buffer' },
-  }),
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
 }
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' },
-  },
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' },
-  }, {
-    { name = 'cmdline' },
-  }),
-  matching = { disallow_symbol_nonprefix_matching = false },
-})
