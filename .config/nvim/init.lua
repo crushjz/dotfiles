@@ -177,6 +177,7 @@ Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
 Plug 'kylechui/nvim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug('mrjones2014/smart-splits.nvim', { ['tag'] = 'v1.0.0' })
+Plug 'ziglang/zig.vim'
 -- Completion
 Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
 

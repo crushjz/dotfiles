@@ -92,6 +92,12 @@ lspconfig.emmet_language_server.setup {
   filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'handlebars' },
 }
 
+-- Zig
+lspconfig.zls.setup {
+  filetypes = { 'zig' },
+  on_attach = on_ts_ls_attach,
+}
+
 -- Lua
 lspconfig.lua_ls.setup {
   filetypes = { 'lua' },

@@ -11,6 +11,7 @@ require('conform').setup {
     handlebars = { 'prettier' },
     json = { 'prettier' },
     markdown = { 'prettier' },
+    zig = { 'zigfmt' },
   },
 }
 
