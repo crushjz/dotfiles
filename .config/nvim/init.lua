@@ -190,6 +190,7 @@ vim.call 'plug#end'
 --------------------------------------------------------------------------------
 
 vim.cmd [[colorscheme base16-gruvbox-dark-medium]]
+require 'plugins.telescope'
 require 'plugins.conform'
 require 'plugins.git'
 require 'plugins.gitlinker'
@@ -197,7 +198,6 @@ require 'plugins.lsp'
 require 'plugins.nvim-tree'
 require 'plugins.nvim-treesitter'
 require 'plugins.nvim-treesitter-textobjects'
-require 'plugins.telescope'
 require 'plugins.lualine'
 require 'plugins.completion'
 require 'plugins.ai'
