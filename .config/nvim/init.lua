@@ -163,7 +163,7 @@ Plug 'stevearc/conform.nvim'
 Plug 'ruifm/gitlinker.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
-Plug 'lewis6991/gitsigns.nvim'
+Plug('echasnovski/mini.diff', { ['branch'] = 'stable' })
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug('CopilotC-Nvim/CopilotChat.nvim', { ['branch'] = 'main' })
@@ -191,7 +191,7 @@ vim.call 'plug#end'
 
 vim.cmd [[colorscheme base16-gruvbox-dark-medium]]
 require 'plugins.conform'
-require 'plugins.gitsigns'
+require 'plugins.git'
 require 'plugins.gitlinker'
 require 'plugins.lsp'
 require 'plugins.nvim-tree'
