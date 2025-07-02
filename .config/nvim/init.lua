@@ -178,6 +178,7 @@ Plug 'kylechui/nvim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug('mrjones2014/smart-splits.nvim', { ['tag'] = 'v1.0.0' })
 Plug 'ggandor/leap.nvim'
+Plug 'folke/zen-mode.nvim'
 Plug 'ziglang/zig.vim'
 -- Completion
 Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
@@ -207,3 +208,4 @@ require 'plugins.which-key'
 require 'plugins.autopairs'
 require 'plugins.smart-splits'
 require 'plugins.leap-vim'
+require 'plugins.zen-mode'
