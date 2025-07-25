@@ -48,6 +48,17 @@ require('telescope').setup {
         },
       },
     },
+    colorscheme = {
+      enable_preview = true,
+      layout_strategy = 'vertical',
+      layout_config = {
+        vertical = {
+          width = 0.5, -- Set the width to 50% of the screen
+          anchor = 'E', -- Align to the right
+        },
+        height = 0.9, -- Optionally set the height to 90% of the screen
+      },
+    },
   },
   extensions = {
     fzf = {
@@ -70,3 +81,4 @@ vim.keymap.set('n', '<leader>sw', builtin.oldfiles, { desc = 'Search [W]oldfiles
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search [H]elp tags' })
 vim.keymap.set('n', '<leader>sg', builtin.git_status, { desc = 'Search [G]it files' })
+vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = 'Search [C]olorscheme' })
