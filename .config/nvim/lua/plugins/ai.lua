@@ -1,8 +1,3 @@
-require('CopilotChat').setup {}
-
-vim.keymap.set('n', '<leader>ct', ':CopilotToggle<CR>', { desc = 'Copilot [T]oggle' })
-vim.keymap.set('n', '<leader>cb', ':CopilotChatOpen<CR>', { desc = 'Copilot Chat with current [B]uffer' })
-
 -- Disable Copilot by default
 vim.g.copilot_enabled = false
 local copilot_enabled = false
@@ -14,3 +9,8 @@ vim.api.nvim_create_user_command('CopilotToggle', function()
   end
   copilot_enabled = not copilot_enabled
 end, {})
+
+require('codecompanion').setup()
+
+vim.keymap.set('n', '<leader>ct', ':CopilotToggle<CR>', { desc = 'Copilot [T]oggle' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cc', ':CodeCompanionChat<CR>', { desc = 'Copilot [C]hat' })
