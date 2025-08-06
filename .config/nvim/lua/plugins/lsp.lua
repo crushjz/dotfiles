@@ -11,15 +11,6 @@ local function add_desc(base_opts, desc)
   return copy
 end
 
--- Assume `client` is your LSP client object
-local function is_document_highlight_supported(client)
-  return client.server_capabilities.documentHighlightProvider == true
-end
-
-local function is_highlight_supported_on_ft(ft)
-  return ft == 'javascript' or ft == 'typescript' or ft == 'javascriptreact' or ft == 'typescriptreact' or ft == 'lua'
-end
-
 local lspconfig = require 'lspconfig'
 
 local function on_ts_ls_attach(client, bufnr)
@@ -34,26 +25,6 @@ local function on_ts_ls_attach(client, bufnr)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, add_desc(opts, 'Jump to the next diagnostic'))
   vim.keymap.set('n', 'gq', vim.diagnostic.setqflist, add_desc(opts, 'Add all diagnostics to the quickfix list'))
 
-  -- Document highlight on cursor hold
-  if is_document_highlight_supported(client) then
-    local group = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = true })
-    vim.api.nvim_create_autocmd({ 'CursorHold' }, {
-      group = group,
-      callback = function()
-        if is_highlight_supported_on_ft(vim.bo.filetype) then
-          vim.lsp.buf.document_highlight()
-        end
-      end,
-    })
-    vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
-      group = group,
-      callback = function()
-        if is_highlight_supported_on_ft(vim.bo.filetype) then
-          vim.lsp.buf.clear_references()
-        end
-      end,
-    })
-  end
 end
 
 
