@@ -11,26 +11,26 @@ require('gitlinker').setup {
   },
 }
 
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   'n',
   '<leader>gy',
   '<cmd>lua require"gitlinker".get_buf_range_url("n")<cr>',
   { silent = true, desc = 'Copy Git remote URL for current line to clipboard' }
 )
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   'v',
   '<leader>gy',
   '<cmd>lua require"gitlinker".get_buf_range_url("v")<cr>',
   { desc = 'Copy Git remote URL for selected lines to clipboard' }
 )
 
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   'n',
   '<leader>go',
   '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
   { silent = true, desc = 'Open Git remote URL for current line in browser' }
 )
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   'v',
   '<leader>go',
   '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
