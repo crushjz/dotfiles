@@ -34,6 +34,8 @@ lspconfig.ts_ls.setup {
   on_attach = on_ts_ls_attach,
 }
 
+lspconfig.ember.setup {}
+
 -- Eslint
 lspconfig.eslint.setup {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
