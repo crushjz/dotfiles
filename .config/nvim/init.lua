@@ -163,7 +163,7 @@ Plug 'stevearc/conform.nvim'
 Plug 'ruifm/gitlinker.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
-Plug('echasnovski/mini.diff', { ['branch'] = 'stable' })
+Plug 'echasnovski/mini.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug 'olimorris/codecompanion.nvim'
