@@ -27,11 +27,13 @@ local function on_ts_ls_attach(client, bufnr)
 
 end
 
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -- TypeScript / JavaScript
 lspconfig.ts_ls.setup {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   on_attach = on_ts_ls_attach,
+  capabilities = capabilities,
 }
 
 lspconfig.ember.setup {}
