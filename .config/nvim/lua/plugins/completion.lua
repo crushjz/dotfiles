@@ -20,10 +20,38 @@ blink.setup {
   completion = {
     documentation = { auto_show = false },
     accept = { auto_brackets = { enabled = false } },
+    menu = {
+      draw = {
+        columns = {
+          { 'kind_icon', 'label', 'label_description', 'source_name', gap = 1 },
+        },
+        components = {
+          label_description = {
+            width = { max = 80 },
+            text = function(ctx)
+              if ctx.item and ctx.item.detail then
+                return ctx.item.detail
+              end
+              return ctx.label_description or ''
+            end,
+          },
+          source_name = {
+            text = function(ctx)
+              return '[' .. ctx.source_name .. ']'
+            end,
+          },
+        },
+      },
+    },
   },
+  signature = { enabled = true },
   cmdline = {
     keymap = { preset = 'inherit' },
-    completion = { menu = { auto_show = true } },
+    completion = {
+      menu = {
+        auto_show = true,
+      },
+    },
   },
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },
