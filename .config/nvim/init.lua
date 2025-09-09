@@ -169,6 +169,7 @@ Plug 'github/copilot.vim'
 Plug 'olimorris/codecompanion.nvim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = '0.1.x' })
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug 'nvim-lualine/lualine.nvim'
