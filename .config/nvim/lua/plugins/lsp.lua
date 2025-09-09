@@ -48,6 +48,8 @@ lspconfig.eslint.setup {
   end,
 }
 
+lspconfig.cssmodules_ls.setup({})
+
 lspconfig.stylelint_lsp.setup {
   filetypes = {
     'css',
