@@ -194,6 +194,7 @@ vim.call 'plug#end'
 --------------------------------------------------------------------------------
 
 vim.cmd [[colorscheme base16-gruvbox-dark-medium]]
+-- vim.cmd [[colorscheme base16-gruvbox-light-hard]]
 require 'plugins.telescope'
 require 'plugins.conform'
 require 'plugins.git'
