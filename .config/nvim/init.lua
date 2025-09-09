@@ -126,8 +126,8 @@ vim.keymap.set('n', '<C-S-j>', ':split<CR>', { desc = 'Split horizontally' })
 vim.keymap.set('n', '<C-q>', ':q<CR>', { desc = 'Close current buffer' })
 
 -- Move between buffers
-vim.api.nvim_set_keymap('n', '[[', ':bprev<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']]', ':bnext<CR>', { desc = 'Next buffer', noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '[[', ':bprev<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', ']]', ':bnext<CR>', { desc = 'Next buffer', noremap = true, silent = true })
 
 -- Quickfix list: move next/prev
 vim.keymap.set('n', ']q', '<cmd>cnext<CR>zz')
@@ -178,6 +178,7 @@ Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
 Plug 'kylechui/nvim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug('mrjones2014/smart-splits.nvim', { ['tag'] = 'v1.0.0' })
+Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' })
 Plug 'ggandor/leap.nvim'
 Plug 'folke/zen-mode.nvim'
 Plug 'ziglang/zig.vim'
@@ -208,5 +209,6 @@ require 'plugins.surround'
 require 'plugins.which-key'
 require 'plugins.autopairs'
 require 'plugins.smart-splits'
+require 'plugins.harpoon'
 require 'plugins.leap-vim'
 require 'plugins.zen-mode'
