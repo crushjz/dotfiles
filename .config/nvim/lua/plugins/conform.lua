@@ -26,7 +26,7 @@ local function format_buffer_or_range(args)
       ['end'] = { args.line2, end_line:len() },
     }
   end
-  require('conform').format { async = true, lsp_format = 'fallback', range = range }
+  require('conform').format { async = false, lsp_format = 'fallback', range = range }
 end
 
 vim.api.nvim_create_user_command('Format', function(args)
@@ -37,7 +37,7 @@ vim.api.nvim_create_user_command('FormatAndLint', function(args)
   format_buffer_or_range(args)
   local ft = vim.bo.filetype
   if ft == 'javascript' or ft == 'javascriptreact' or ft == 'typescript' or ft == 'typescriptreact' then
-    vim.cmd 'EslintFixAll'
+    vim.cmd 'LspEslintFixAll'
   end
 end, { range = true })
 

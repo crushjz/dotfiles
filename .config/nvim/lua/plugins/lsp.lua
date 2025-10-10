@@ -11,8 +11,6 @@ local function add_desc(base_opts, desc)
   return copy
 end
 
-local lspconfig = require 'lspconfig'
-
 local function on_ts_ls_attach(client, bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true }
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, add_desc(opts, 'Go to definition'))
@@ -21,38 +19,47 @@ local function on_ts_ls_attach(client, bufnr)
   vim.keymap.set('n', 'gs', vim.lsp.buf.rename, add_desc(opts, 'Rename'))
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, add_desc(opts, 'References'))
   vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, add_desc(opts, 'Code action'))
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, add_desc(opts, 'Jump to the previous diagnostic'))
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, add_desc(opts, 'Jump to the next diagnostic'))
+  vim.keymap.set('n', '[d', vim.goto_prev, add_desc(opts, 'Jump to the previous diagnostic'))
+  vim.keymap.set('n', ']d', vim.goto_next, add_desc(opts, 'Jump to the next diagnostic'))
   vim.keymap.set('n', 'gq', vim.diagnostic.setqflist, add_desc(opts, 'Add all diagnostics to the quickfix list'))
-
 end
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -- TypeScript / JavaScript
-lspconfig.ts_ls.setup {
+vim.lsp.enable 'ts_ls'
+vim.lsp.config('ts_ls', {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   on_attach = on_ts_ls_attach,
   capabilities = capabilities,
-}
+})
 
-lspconfig.ember.setup {}
+vim.lsp.enable 'ember'
 
 -- Eslint
-lspconfig.eslint.setup {
+vim.lsp.enable 'eslint'
+
+local base_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config('eslint', {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  on_attach = function(_, bufnr)
-    vim.api.nvim_create_autocmd('BufWritePost', {
-      callback = function()
-        vim.cmd 'Format'
-      end,
+  on_attach = function(client, bufnr)
+    if not base_on_attach then
+      return
+    end
+
+    base_on_attach(client, bufnr)
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+      command = 'Format', -- Only run conform.format
     })
   end,
-}
+})
 
-lspconfig.cssmodules_ls.setup({})
+vim.lsp.enable 'cssmodules_ls'
+vim.lsp.config('cssmodules_ls', {})
 
-lspconfig.stylelint_lsp.setup {
+vim.lsp.enable 'stylelint_lsp'
+vim.lsp.config('stylelint_lsp', {
   filetypes = {
     'css',
     'less',
@@ -61,21 +68,24 @@ lspconfig.stylelint_lsp.setup {
     'vue',
     'wxss',
   },
-}
+})
 
 -- Emmet
-lspconfig.emmet_language_server.setup {
+vim.lsp.enable 'emmet_language_server'
+vim.lsp.config('emmet_language_server', {
   filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'handlebars' },
-}
+})
 
 -- Zig
-lspconfig.zls.setup {
+vim.lsp.enable 'zls'
+vim.lsp.config('zls', {
   filetypes = { 'zig' },
   on_attach = on_ts_ls_attach,
-}
+})
 
 -- Lua
-lspconfig.lua_ls.setup {
+vim.lsp.enable 'lua_ls'
+vim.lsp.config('lua_ls', {
   filetypes = { 'lua' },
   on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -108,4 +118,7 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {},
   },
-}
+})
+
+vim.lsp.enable 'copilot'
+vim.lsp.config('copilot', {})
