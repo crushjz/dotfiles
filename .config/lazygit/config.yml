@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
+# Config relating to git
+git:
+  # If true, periodically fetch from remote
+  autoFetch: false
