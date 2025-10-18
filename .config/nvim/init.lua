@@ -122,8 +122,26 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 vim.keymap.set('n', '<C-S-l>', ':vsplit<CR>', { desc = 'Split vertically' })
 vim.keymap.set('n', '<C-S-j>', ':split<CR>', { desc = 'Split horizontally' })
 
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
 -- Close current buffer
 vim.keymap.set('n', '<C-q>', ':q<CR>', { desc = 'Close current buffer' })
+
+-- Resize panes using Alt + hjkl
+-- Requires iterm2 setting: Profiles -> Keys -> Change Left Option key & Right Option key from normal to Esc+
+-- Requires kitty setting: macos_option_as_alt yes
+vim.keymap.set('n', '<C-M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-M-j>', ':resize +3<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-M-k>', ':resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-M-l>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+
 
 -- Move between buffers
 -- vim.api.nvim_set_keymap('n', '[[', ':bprev<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
@@ -177,7 +195,6 @@ Plug 'folke/which-key.nvim'
 Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
 Plug 'kylechui/nvim-surround'
 Plug 'windwp/nvim-autopairs'
-Plug('mrjones2014/smart-splits.nvim', { ['tag'] = 'v1.0.0' })
 Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' })
 Plug 'ggandor/leap.nvim'
 Plug 'folke/zen-mode.nvim'
@@ -209,7 +226,6 @@ require 'plugins.ai'
 require 'plugins.surround'
 require 'plugins.which-key'
 require 'plugins.autopairs'
-require 'plugins.smart-splits'
 require 'plugins.harpoon'
 require 'plugins.leap-vim'
 require 'plugins.zen-mode'
