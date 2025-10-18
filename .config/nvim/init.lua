@@ -166,7 +166,6 @@ Plug 'williamboman/mason.nvim'
 Plug 'echasnovski/mini.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
-Plug 'olimorris/codecompanion.nvim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-context'

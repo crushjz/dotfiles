@@ -10,7 +10,4 @@ vim.api.nvim_create_user_command('CopilotToggle', function()
   copilot_enabled = not copilot_enabled
 end, {})
 
-require('codecompanion').setup()
-
 vim.keymap.set('n', '<leader>ct', ':CopilotToggle<CR>', { desc = 'Copilot [T]oggle' })
-vim.keymap.set({ 'n', 'v' }, '<leader>cc', ':CodeCompanionChat<CR>', { desc = 'Copilot [C]hat' })
