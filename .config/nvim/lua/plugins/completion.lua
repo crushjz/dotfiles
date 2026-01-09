@@ -13,7 +13,10 @@ blink.setup {
   -- C-k: Toggle signature help (if signature.enabled = true)
   --
   -- See :h blink-cmp-config-keymap for defining your own keymap
-  keymap = { preset = 'default' },
+  keymap = {
+    preset = 'default',
+    ["<C-e>"] = { "hide", "show" },
+  },
   appearance = {
     nerd_font_variant = 'mono',
   },
@@ -58,4 +61,3 @@ blink.setup {
   },
   fuzzy = { implementation = 'prefer_rust_with_warning' },
 }
-
