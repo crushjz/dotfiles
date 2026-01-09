@@ -120,6 +120,9 @@ alias lta1="eza -lTag --level=1 --icons"
 alias lta2="eza -lTag --level=2 --icons"
 alias lta3="eza -lTag --level=3 --icons"
 
+# Used for lazygit
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 
