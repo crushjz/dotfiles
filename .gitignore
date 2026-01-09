@@ -1,2 +1,11 @@
 .DS_Store
 .zshrc.local
+.config/atuin
+.config/configstore
+.config/fish
+.config/gh
+.config/git
+.config/github
+.config/github-copilot
+.config/karabiner/automatic_backups
+.config/uv
