@@ -1,48 +1,97 @@
-require('nvim-treesitter.configs').setup {
-  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = {
-    'lua',
-    'yaml',
-    'dockerfile',
-    'vim',
-    'vimdoc',
-    'query',
-    'markdown',
-    'markdown_inline',
-    'javascript',
-    'typescript',
-    'html',
-    'css',
-    'glimmer',
-  },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = true,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-
-    -- disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-
-require('treesitter-context').setup({
-  enable = true
+-- Install required parsers
+require('nvim-treesitter').install({
+  'lua',
+  'yaml',
+  'dockerfile',
+  'vim',
+  'vimdoc',
+  'query',
+  'markdown',
+  'markdown_inline',
+  'javascript',
+  'typescript',
+  'html',
+  'css',
+  'glimmer',
 })
+
+-- Textobjects: Select
+local select = require 'nvim-treesitter-textobjects.select'
+
+-- Assignment textobjects
+vim.keymap.set({ 'x', 'o' }, 'a=', function()
+  select.select_textobject('@assignment.outer', 'textobjects')
+end, { desc = 'Select outer part of an assignment' })
+vim.keymap.set({ 'x', 'o' }, 'i=', function()
+  select.select_textobject('@assignment.inner', 'textobjects')
+end, { desc = 'Select inner part of an assignment' })
+vim.keymap.set({ 'x', 'o' }, 'l=', function()
+  select.select_textobject('@assignment.lhs', 'textobjects')
+end, { desc = 'Select left hand side of an assignment' })
+vim.keymap.set({ 'x', 'o' }, 'r=', function()
+  select.select_textobject('@assignment.rhs', 'textobjects')
+end, { desc = 'Select right hand side of an assignment' })
+
+-- Parameter/argument textobjects
+vim.keymap.set({ 'x', 'o' }, 'aa', function()
+  select.select_textobject('@parameter.outer', 'textobjects')
+end, { desc = 'Select outer part of a parameter/argument' })
+vim.keymap.set({ 'x', 'o' }, 'ia', function()
+  select.select_textobject('@parameter.inner', 'textobjects')
+end, { desc = 'Select inner part of a parameter/argument' })
+
+-- Conditional textobjects
+vim.keymap.set({ 'x', 'o' }, 'ai', function()
+  select.select_textobject('@conditional.outer', 'textobjects')
+end, { desc = 'Select outer part of a conditional' })
+vim.keymap.set({ 'x', 'o' }, 'ii', function()
+  select.select_textobject('@conditional.inner', 'textobjects')
+end, { desc = 'Select inner part of a conditional' })
+
+-- Loop textobjects
+vim.keymap.set({ 'x', 'o' }, 'al', function()
+  select.select_textobject('@loop.outer', 'textobjects')
+end, { desc = 'Select outer part of a loop' })
+vim.keymap.set({ 'x', 'o' }, 'il', function()
+  select.select_textobject('@loop.inner', 'textobjects')
+end, { desc = 'Select inner part of a loop' })
+
+-- Function call textobjects
+vim.keymap.set({ 'x', 'o' }, 'af', function()
+  select.select_textobject('@call.outer', 'textobjects')
+end, { desc = 'Select outer part of a function call' })
+vim.keymap.set({ 'x', 'o' }, 'if', function()
+  select.select_textobject('@call.inner', 'textobjects')
+end, { desc = 'Select inner part of a function call' })
+
+-- Function definition textobjects
+vim.keymap.set({ 'x', 'o' }, 'am', function()
+  select.select_textobject('@function.outer', 'textobjects')
+end, { desc = 'Select outer part of a method/function definition' })
+vim.keymap.set({ 'x', 'o' }, 'im', function()
+  select.select_textobject('@function.inner', 'textobjects')
+end, { desc = 'Select inner part of a method/function definition' })
+
+-- Class textobjects
+vim.keymap.set({ 'x', 'o' }, 'ac', function()
+  select.select_textobject('@class.outer', 'textobjects')
+end, { desc = 'Select outer part of a class' })
+vim.keymap.set({ 'x', 'o' }, 'ic', function()
+  select.select_textobject('@class.inner', 'textobjects')
+end, { desc = 'Select inner part of a class' })
+
+-- Textobjects: Move
+local move = require 'nvim-treesitter-textobjects.move'
+
+vim.keymap.set({ 'n', 'x', 'o' }, ']m', function()
+  move.goto_next_start('@function.outer', 'textobjects')
+end, { desc = 'Next function start' })
+vim.keymap.set({ 'n', 'x', 'o' }, '[m', function()
+  move.goto_previous_start('@function.outer', 'textobjects')
+end, { desc = 'Previous function start' })
+vim.keymap.set({ 'n', 'x', 'o' }, ']z', function()
+  move.goto_next_start('@fold', 'folds')
+end, { desc = 'Next fold' })
+vim.keymap.set({ 'n', 'x', 'o' }, '[z', function()
+  move.goto_previous_start('@fold', 'folds')
+end, { desc = 'Previous fold' })

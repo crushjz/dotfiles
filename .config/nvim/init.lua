@@ -185,7 +185,7 @@ Plug 'echasnovski/mini.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'folke/sidekick.nvim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug('nvim-treesitter/nvim-treesitter-textobjects', { ['branch'] = 'main' })
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = 'master' })
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
@@ -218,7 +218,6 @@ require 'plugins.gitlinker'
 require 'plugins.lsp'
 require 'plugins.nvim-tree'
 require 'plugins.nvim-treesitter'
-require 'plugins.nvim-treesitter-textobjects'
 require 'plugins.lualine'
 require 'plugins.completion'
 require 'plugins.ai'
