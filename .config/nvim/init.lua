@@ -183,7 +183,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'echasnovski/mini.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
-Plug 'github/copilot.vim'
 Plug 'folke/sidekick.nvim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
