@@ -86,8 +86,7 @@ vim.opt.expandtab = true
 -- Enable auto-indent
 vim.opt.smartindent = true
 
--- Enable folding
-vim.o.foldmethod = 'indent'
+-- Enable folding (default to indent, treesitter folds set per-filetype)
 vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99

@@ -37,6 +37,26 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Enable treesitter highlighting',
 })
 
+-- Enable treesitter-based folding for supported filetypes
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'lua',
+    'yaml',
+    'dockerfile',
+    'vim',
+    'javascript',
+    'typescript',
+    'html',
+    'css',
+    'glimmer',
+  },
+  callback = function()
+    vim.wo[0][0].foldmethod = 'expr'
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  end,
+  desc = 'Enable treesitter folding',
+})
+
 -- Textobjects: Select
 local select = require 'nvim-treesitter-textobjects.select'
 
