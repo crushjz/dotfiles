@@ -119,21 +119,32 @@ vim.keymap.set('n', '<C-S-j>', ':split<CR>', { desc = 'Split horizontally' })
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-h>', function() require('smart-splits').move_cursor_left() end,
+  { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', function() require('smart-splits').move_cursor_right() end,
+  { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', function() require('smart-splits').move_cursor_down() end,
+  { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', function() require('smart-splits').move_cursor_up() end,
+  { desc = 'Move focus to the upper window' })
 
 -- Close current buffer
 vim.keymap.set('n', '<C-q>', ':q<CR>', { desc = 'Close current buffer' })
 
--- Resize panes using Alt + hjkl
+-- Resize panes using Ctrl-Alt + hjkl
+--
 -- Requires iterm2 setting: Profiles -> Keys -> Change Left Option key & Right Option key from normal to Esc+
 -- Requires kitty setting: macos_option_as_alt yes
-vim.keymap.set('n', '<C-M-h>', ':vertical resize -2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-M-j>', ':resize +3<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-M-k>', ':resize -2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-M-l>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+-- Requires ghostty: macos-option-as-alt=true
+-- Requires tmux: extended-keys on
+vim.keymap.set('n', '<C-M-h>', function() require('smart-splits').resize_left() end,
+  { noremap = true, silent = true, desc = 'Resize split left' })
+vim.keymap.set('n', '<C-M-j>', function() require('smart-splits').resize_down() end,
+  { noremap = true, silent = true, desc = 'Resize split down' })
+vim.keymap.set('n', '<C-M-k>', function() require('smart-splits').resize_up() end,
+  { noremap = true, silent = true, desc = 'Resize split up' })
+vim.keymap.set('n', '<C-M-l>', function() require('smart-splits').resize_right() end,
+  { noremap = true, silent = true, desc = 'Resize split right' })
 
 
 -- Move between buffers
@@ -180,6 +191,7 @@ Plug 'folke/sidekick.nvim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-treesitter/nvim-treesitter-textobjects', { ['branch'] = 'main' })
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'mrjones2014/smart-splits.nvim'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = 'master' })
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug 'nvim-lualine/lualine.nvim'
@@ -220,3 +232,4 @@ require 'plugins.autopairs'
 require 'plugins.harpoon'
 require 'plugins.leap-vim'
 require 'plugins.zen-mode'
+require 'plugins.smart-splits'
