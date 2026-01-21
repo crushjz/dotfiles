@@ -15,6 +15,28 @@ require('nvim-treesitter').install({
   'glimmer',
 })
 
+-- Enable treesitter highlighting for supported filetypes
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'lua',
+    'yaml',
+    'dockerfile',
+    'vim',
+    'vimdoc',
+    'query',
+    'markdown',
+    'javascript',
+    'typescript',
+    'html',
+    'css',
+    'glimmer',
+  },
+  callback = function()
+    vim.treesitter.start()
+  end,
+  desc = 'Enable treesitter highlighting',
+})
+
 -- Textobjects: Select
 local select = require 'nvim-treesitter-textobjects.select'
 
