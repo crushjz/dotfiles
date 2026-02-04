@@ -201,7 +201,7 @@ Plug('kevinhwang91/nvim-bqf', { ['for'] = 'qf' })
 Plug 'kylechui/nvim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' })
-Plug 'ggandor/leap.nvim'
+Plug 'https://codeberg.org/andyg/leap.nvim'
 Plug 'folke/zen-mode.nvim'
 Plug 'ziglang/zig.vim'
 -- Completion
