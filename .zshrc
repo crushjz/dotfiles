@@ -218,3 +218,4 @@ fi
 # Secrets
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
+eval "$(starship init zsh)"
