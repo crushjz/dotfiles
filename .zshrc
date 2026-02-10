@@ -81,6 +81,7 @@ plugins=(
     tmux
     zoxide
     zsh-autosuggestions
+    zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
     # zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
@@ -145,8 +146,15 @@ fi
 # Python
 export PATH="$PATH:/Users/cesare.puliatti/Library/Python/3.11/bin"
 
-# Atuin
-eval "$(atuin init zsh)"
+# Atuin - initialize after zsh-vi-mode to preserve key bindings
+zvm_after_init() {
+  eval "$(atuin init zsh)"
+}
+
+# If zsh-vi-mode is not loaded, initialize atuin normally
+if ! typeset -f zvm_after_init_commands &>/dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
 # Volta
 export VOLTA_HOME="$HOME/.volta"
