@@ -2,6 +2,7 @@ macos-option-as-alt = true
 macos-titlebar-style = "hidden"
 
 theme = dark:Gruvbox Dark,light:Gruvbox Light Hard
+font-family = JetBrains Mono
 
 # Shift + Enter: creates a new line
 keybind = shift+enter=text:\x1b\r
