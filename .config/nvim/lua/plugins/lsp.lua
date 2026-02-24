@@ -70,14 +70,7 @@ vim.lsp.config('cssmodules_ls', {})
 
 vim.lsp.enable 'stylelint_lsp'
 vim.lsp.config('stylelint_lsp', {
-  filetypes = {
-    'css',
-    'less',
-    'scss',
-    'sugarss',
-    'vue',
-    'wxss',
-  },
+  filetypes = { 'css', 'less', 'scss', 'vue' },
 })
 
 -- CSS Language Server
