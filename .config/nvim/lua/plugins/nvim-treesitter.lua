@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'html',
     'css',
     'glimmer',
+    'handlebars',
   },
   callback = function()
     vim.treesitter.start()
