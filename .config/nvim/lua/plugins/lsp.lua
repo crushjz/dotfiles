@@ -80,6 +80,12 @@ vim.lsp.config('stylelint_lsp', {
   },
 })
 
+-- CSS Language Server
+vim.lsp.enable 'cssls'
+vim.lsp.config('cssls', {
+  filetypes = { 'css', 'scss', 'less' },
+})
+
 -- Emmet
 vim.lsp.enable 'emmet_language_server'
 vim.lsp.config('emmet_language_server', {
