@@ -192,6 +192,7 @@ Plug 'folke/sidekick.nvim'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-treesitter/nvim-treesitter-textobjects', { ['branch'] = 'main' })
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'folke/ts-comments.nvim'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = 'master' })
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
@@ -234,3 +235,4 @@ require 'plugins.harpoon'
 require 'plugins.leap-vim'
 require 'plugins.zen-mode'
 require 'plugins.smart-splits'
+require 'plugins.ts-comments'
