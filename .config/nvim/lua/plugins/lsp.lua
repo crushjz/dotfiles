@@ -65,6 +65,20 @@ vim.lsp.config('eslint', {
   end,
 })
 
+-- OXC (oxlint language server — diagnostics only, no hover/definition/completion)
+-- Only starts when oxlint is installed in the project's node_modules
+vim.lsp.enable 'oxlint'
+vim.lsp.config('oxlint', {
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  cmd = function(dispatchers)
+    local bin = vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';')
+    if bin == '' then
+      return nil
+    end
+    return vim.lsp.rpc.start({ bin, '--lsp' }, dispatchers)
+  end,
+})
+
 vim.lsp.enable 'cssmodules_ls'
 vim.lsp.config('cssmodules_ls', {})
 

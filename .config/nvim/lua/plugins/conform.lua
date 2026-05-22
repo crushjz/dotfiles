@@ -3,10 +3,10 @@ require('conform').setup {
     lua = { 'stylua' },
     python = { 'isort', 'black' },
     rust = { 'rustfmt', lsp_format = 'fallback' },
-    javascript = { 'prettier' },
-    javascriptreact = { 'prettier' },
-    typescript = { 'prettier' },
-    typescriptreact = { 'prettier' },
+    javascript = { 'oxfmt', 'prettier', stop_after_first = true },
+    javascriptreact = { 'oxfmt', 'prettier', stop_after_first = true },
+    typescript = { 'oxfmt', 'prettier', stop_after_first = true },
+    typescriptreact = { 'oxfmt', 'prettier', stop_after_first = true },
     yaml = { 'prettier' },
     css = { 'prettier' },
     html = { 'prettier' },
@@ -38,7 +38,12 @@ vim.api.nvim_create_user_command('FormatAndLint', function(args)
   format_buffer_or_range(args)
   local ft = vim.bo.filetype
   if ft == 'javascript' or ft == 'javascriptreact' or ft == 'typescript' or ft == 'typescriptreact' then
-    vim.cmd 'LspEslintFixAll'
+    if vim.fn.findfile('node_modules/.bin/eslint', vim.fn.getcwd() .. ';') ~= '' then
+      vim.cmd 'LspEslintFixAll'
+    end
+    if vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';') ~= '' then
+      vim.cmd 'LspOxlintFixAll'
+    end
   end
 end, { range = true })
 
