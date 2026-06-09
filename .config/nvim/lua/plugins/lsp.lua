@@ -2,46 +2,66 @@ local vim = vim
 
 require('mason').setup()
 
-local function add_desc(base_opts, desc)
-  local copy = {}
-  for k, v in pairs(base_opts) do
-    copy[k] = v
-  end
-  copy.desc = desc
-  return copy
-end
-
-local function on_ts_ls_attach(client, bufnr)
-  local opts = { buffer = bufnr, noremap = true, silent = true }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, add_desc(opts, 'Go to definition'))
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, add_desc(opts, 'Hover'))
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, add_desc(opts, 'Go to implementation'))
-  vim.keymap.set('n', 'gs', vim.lsp.buf.rename, add_desc(opts, 'Rename'))
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, add_desc(opts, 'References'))
-  vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, add_desc(opts, 'Code action'))
-  vim.keymap.set('n', '[d', function()
-    vim.diagnostic.jump({ count = -1 })
-    vim.defer_fn(function()
-      vim.diagnostic.open_float()
-    end, 10)
-  end, add_desc(opts, 'Jump to the previous diagnostic'))
-  vim.keymap.set('n', ']d', function()
-    vim.diagnostic.jump({ count = 1 })
-    vim.defer_fn(function()
-      vim.diagnostic.open_float()
-    end, 10)
-  end, add_desc(opts, 'Jump to the next diagnostic'))
-  vim.keymap.set('n', 'gq', vim.diagnostic.setqflist, add_desc(opts, 'Add all diagnostics to the quickfix list'))
-end
-
 local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+-- Global LSP settings (applied to all servers)
+vim.lsp.config('*', {
+  capabilities = capabilities,
+})
+
+-- LspAttach autocmd — set keymaps once for all servers
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
+  callback = function()
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover' })
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
+    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { desc = 'Go to type definition' })
+    vim.keymap.set('n', 'gR', function() require('telescope.builtin').lsp_references() end, { desc = 'References' })
+    vim.keymap.set('n', 'gs', vim.lsp.buf.rename, { desc = 'Rename' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, { desc = 'Code action' })
+    vim.keymap.set('n', '[d', function()
+      vim.diagnostic.jump({ count = -1 })
+      vim.defer_fn(function()
+        vim.diagnostic.open_float()
+      end, 10)
+    end, { desc = 'Jump to the previous diagnostic' })
+    vim.keymap.set('n', ']d', function()
+      vim.diagnostic.jump({ count = 1 })
+      vim.defer_fn(function()
+        vim.diagnostic.open_float()
+      end, 10)
+    end, { desc = 'Jump to the next diagnostic' })
+    vim.keymap.set('n', 'gq', vim.diagnostic.setqflist, { desc = 'Add all diagnostics to the quickfix list' })
+  end,
+})
 
 -- TypeScript / JavaScript
 vim.lsp.enable 'ts_ls'
 vim.lsp.config('ts_ls', {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  on_attach = on_ts_ls_attach,
-  capabilities = capabilities,
+  init_options = {
+    preferences = {
+      includeCompletionsForModuleExports = true,
+      includeCompletionsForImportStatements = true,
+    },
+  },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayVariableTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
 })
 
 vim.lsp.enable 'ember'
@@ -49,18 +69,12 @@ vim.lsp.enable 'ember'
 -- Eslint
 vim.lsp.enable 'eslint'
 
-local base_on_attach = vim.lsp.config.eslint.on_attach
 vim.lsp.config('eslint', {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   on_attach = function(client, bufnr)
-    if not base_on_attach then
-      return
-    end
-
-    base_on_attach(client, bufnr)
     vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = bufnr,
-      command = 'Format', -- Only run conform.format
+      command = 'Format',
     })
   end,
 })
@@ -101,16 +115,12 @@ vim.lsp.config('emmet_language_server', {
 
 -- Zig
 vim.lsp.enable 'zls'
-vim.lsp.config('zls', {
-  filetypes = { 'zig' },
-  on_attach = on_ts_ls_attach,
-})
+vim.lsp.config('zls', {})
 
 -- Lua
 vim.lsp.enable 'lua_ls'
 vim.lsp.config('lua_ls', {
   filetypes = { 'lua' },
-  on_attach = on_ts_ls_attach,
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
@@ -121,33 +131,17 @@ vim.lsp.config('lua_ls', {
 
     client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most
-        -- likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
-        -- Tell the language server how to find Lua modules same way as Neovim
-        -- (see `:h lua-module-load`)
         path = {
           'lua/?.lua',
           'lua/?/init.lua',
         },
       },
-      -- Make the server aware of Neovim runtime files
       workspace = {
         checkThirdParty = false,
         library = {
           vim.env.VIMRUNTIME,
-          -- Depending on the usage, you might want to add additional paths
-          -- here.
-          -- '${3rd}/luv/library'
-          -- '${3rd}/busted/library'
         },
-        -- Or pull in all of 'runtimepath'.
-        -- NOTE: this is a lot slower and will cause issues when working on
-        -- your own configuration.
-        -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-        -- library = {
-        --   vim.api.nvim_get_runtime_file('', true),
-        -- }
       },
     })
   end,
