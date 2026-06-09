@@ -189,7 +189,7 @@ Plug 'williamboman/mason.nvim'
 Plug 'echasnovski/mini.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'folke/sidekick.nvim'
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug('nvim-treesitter/nvim-treesitter', { ['branch'] = 'main', ['do'] = ':TSUpdate' })
 Plug('nvim-treesitter/nvim-treesitter-textobjects', { ['branch'] = 'main' })
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'folke/ts-comments.nvim'

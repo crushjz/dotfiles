@@ -84,12 +84,15 @@ vim.lsp.config('eslint', {
 vim.lsp.enable 'oxlint'
 vim.lsp.config('oxlint', {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  root_dir = function(bufnr, on_dir)
+    local bin = vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';')
+    if bin ~= '' then
+      on_dir(vim.fn.getcwd())
+    end
+  end,
   cmd = function(dispatchers)
     local bin = vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';')
-    if bin == '' then
-      return nil
-    end
-    return vim.lsp.rpc.start({ bin, '--lsp' }, dispatchers)
+    return vim.lsp.rpc.start({ bin, '--lsp' }, dispatchers, { cwd = vim.fn.getcwd() })
   end,
 })
 
