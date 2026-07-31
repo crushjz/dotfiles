@@ -170,6 +170,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Register filetypes not built into Neovim
+vim.filetype.add {
+  extension = {
+    hbs = 'handlebars',
+    gts = 'typescript.glimmer',
+    gjs = 'javascript.glimmer',
+  },
+}
+
 --------------------------------------------------------------------------------
 -- [[ Plugins ]]
 vim.call 'plug#begin'
