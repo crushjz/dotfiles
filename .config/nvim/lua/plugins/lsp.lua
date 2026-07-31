@@ -37,62 +37,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- TypeScript / JavaScript
-vim.lsp.enable 'ts_ls'
-vim.lsp.config('ts_ls', {
-  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  init_options = {
-    preferences = {
-      includeCompletionsForModuleExports = true,
-      includeCompletionsForImportStatements = true,
-    },
-  },
-  settings = {
-    typescript = {
-      inlayHints = {
-        includeInlayParameterNameHints = 'all',
-        includeInlayVariableTypeHints = true,
-        includeInlayFunctionParameterTypeHints = true,
-      },
-    },
-    javascript = {
-      inlayHints = {
-        includeInlayParameterNameHints = 'all',
-        includeInlayVariableTypeHints = true,
-      },
-    },
-  },
-})
+
+vim.lsp.enable 'tsgo'
 
 vim.lsp.enable 'ember'
 
 -- Eslint
-vim.lsp.enable 'eslint'
-
-vim.lsp.config('eslint', {
-  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      buffer = bufnr,
-      command = 'Format',
-    })
-  end,
-})
+-- vim.lsp.enable 'eslint'
+-- vim.lsp.config('eslint', {
+--   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+--   on_attach = function(client, bufnr)
+--     vim.api.nvim_create_autocmd('BufWritePre', {
+--       buffer = bufnr,
+--       command = 'Format',
+--     })
+--   end,
+-- })
 
 -- OXC (oxlint language server — diagnostics only, no hover/definition/completion)
 -- Only starts when oxlint is installed in the project's node_modules
 vim.lsp.enable 'oxlint'
 vim.lsp.config('oxlint', {
-  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  root_dir = function(bufnr, on_dir)
-    local bin = vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';')
-    if bin ~= '' then
-      on_dir(vim.fn.getcwd())
-    end
-  end,
-  cmd = function(dispatchers)
-    local bin = vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';')
-    return vim.lsp.rpc.start({ bin, '--lsp' }, dispatchers, { cwd = vim.fn.getcwd() })
+  cmd = function(dispatchers, config)
+    local bin = vim.fs.find('node_modules/.bin/oxlint', {
+      path = config.root_dir,
+      upward = true,
+    })[1]
+    return vim.lsp.rpc.start({ bin or 'oxlint', '--lsp' }, dispatchers)
   end,
 })
 

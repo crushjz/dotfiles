@@ -36,14 +36,8 @@ end, { range = true })
 
 vim.api.nvim_create_user_command('FormatAndLint', function(args)
   format_buffer_or_range(args)
-  local ft = vim.bo.filetype
-  if ft == 'javascript' or ft == 'javascriptreact' or ft == 'typescript' or ft == 'typescriptreact' then
-    if vim.fn.findfile('node_modules/.bin/eslint', vim.fn.getcwd() .. ';') ~= '' then
-      vim.cmd 'LspEslintFixAll'
-    end
-    if vim.fn.findfile('node_modules/.bin/oxlint', vim.fn.getcwd() .. ';') ~= '' then
-      vim.cmd 'LspOxlintFixAll'
-    end
+  if #vim.lsp.get_clients({ name = 'oxlint', bufnr = 0 }) > 0 then
+    vim.cmd 'LspOxlintFixAll'
   end
 end, { range = true })
 
