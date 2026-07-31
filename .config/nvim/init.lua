@@ -215,6 +215,14 @@ Plug 'https://codeberg.org/andyg/leap.nvim'
 Plug 'folke/zen-mode.nvim'
 Plug 'OXY2DEV/markview.nvim'
 Plug 'ziglang/zig.vim'
+
+-- File search (temporarily replacing Telescope find_files / live_grep)
+Plug('dmtrKovalenko/fff.nvim', {
+  ['do'] = function()
+    require('fff.download').download_or_build_binary()
+  end
+})
+
 -- Completion
 Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
 
@@ -247,3 +255,4 @@ require 'plugins.zen-mode'
 require 'plugins.markview'
 require 'plugins.smart-splits'
 require 'plugins.ts-comments'
+require 'plugins.fff'

@@ -75,8 +75,8 @@ require('telescope').setup {
 require('telescope').load_extension 'fzf'
 
 local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>ss', builtin.find_files, { desc = '[s]earch files' })
-vim.keymap.set('n', '<leader>S', builtin.live_grep, { desc = '[S]earch by grep' })
+-- vim.keymap.set('n', '<leader>ss', builtin.find_files, { desc = '[s]earch files' })  -- temporarily replaced by fff
+-- vim.keymap.set('n', '<leader>S', builtin.live_grep, { desc = '[S]earch by grep' })  -- temporarily replaced by fff
 vim.keymap.set('n', '<leader>sw', builtin.oldfiles, { desc = 'Search [W]oldfiles' })
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search [H]elp tags' })
