@@ -213,6 +213,7 @@ Plug 'windwp/nvim-autopairs'
 Plug('ThePrimeagen/harpoon', { ['branch'] = 'harpoon2' })
 Plug 'https://codeberg.org/andyg/leap.nvim'
 Plug 'folke/zen-mode.nvim'
+Plug 'OXY2DEV/markview.nvim'
 Plug 'ziglang/zig.vim'
 -- Completion
 Plug('saghen/blink.cmp', { ['tag'] = 'v1.*' })
@@ -243,5 +244,6 @@ require 'plugins.autopairs'
 require 'plugins.harpoon'
 require 'plugins.leap-vim'
 require 'plugins.zen-mode'
+require 'plugins.markview'
 require 'plugins.smart-splits'
 require 'plugins.ts-comments'
