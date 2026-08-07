@@ -55,15 +55,13 @@ vim.lsp.enable 'ember'
 -- })
 
 -- OXC (oxlint language server — diagnostics only, no hover/definition/completion)
--- Only starts when oxlint is installed in the project's node_modules
+-- lspconfig's builtin roots at the nearest .oxlintrc.json, which spawns one server
+-- per package in a monorepo. Root at the repo instead: oxlint resolves nested
+-- .oxlintrc.json itself, so one server covers everything.
 vim.lsp.enable 'oxlint'
 vim.lsp.config('oxlint', {
-  cmd = function(dispatchers, config)
-    local bin = vim.fs.find('node_modules/.bin/oxlint', {
-      path = config.root_dir,
-      upward = true,
-    })[1]
-    return vim.lsp.rpc.start({ bin or 'oxlint', '--lsp' }, dispatchers)
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(bufnr, { 'pnpm-lock.yaml', 'package-lock.json', 'yarn.lock', 'bun.lock', '.git' }))
   end,
 })
 
