@@ -40,8 +40,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.lsp.enable 'tsgo'
 
-vim.lsp.enable 'ember'
-
 -- Eslint
 -- vim.lsp.enable 'eslint'
 -- vim.lsp.config('eslint', {
