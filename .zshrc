@@ -79,7 +79,6 @@ plugins=(
     ansible
     brew
     tmux
-    zoxide
     zsh-autosuggestions
     zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
     # zsh-syntax-highlighting
@@ -166,7 +165,6 @@ export PATH="/Users/cesare.puliatti/dev/platform-tools:$PATH"
 
 # Zoxide
 eval "$(zoxide init zsh)"
-export ZOXIDE_CMD_OVERRIDE="cd"
 
 # https://github.com/context-labs/uwu
 uwu() {
