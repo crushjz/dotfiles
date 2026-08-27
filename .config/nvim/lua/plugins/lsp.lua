@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
-vim.lsp.enable 'tsgo'
+vim.lsp.enable 'tsc'
 
 -- Eslint
 -- vim.lsp.enable 'eslint'
