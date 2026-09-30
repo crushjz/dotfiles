@@ -56,12 +56,20 @@ vim.lsp.enable 'tsc'
 -- lspconfig's builtin roots at the nearest .oxlintrc.json, which spawns one server
 -- per package in a monorepo. Root at the repo instead: oxlint resolves nested
 -- .oxlintrc.json itself, so one server covers everything.
-vim.lsp.enable 'oxlint'
 vim.lsp.config('oxlint', {
   root_dir = function(bufnr, on_dir)
-    on_dir(vim.fs.root(bufnr, { 'pnpm-lock.yaml', 'package-lock.json', 'yarn.lock', 'bun.lock', '.git' }))
+    local root = vim.fs.root(bufnr, { 'pnpm-lock.yaml', 'package-lock.json', 'yarn.lock', 'bun.lock', '.git' })
+    if not root then
+      root = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)) or vim.fn.getcwd()
+    end
+    on_dir(root)
   end,
+  settings = {
+    typeAware = false,
+    run = 'onSave',
+  },
 })
+vim.lsp.enable 'oxlint'
 
 vim.lsp.enable 'cssmodules_ls'
 vim.lsp.config('cssmodules_ls', {})
