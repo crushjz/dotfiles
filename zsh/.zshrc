@@ -208,7 +208,9 @@ if type compdef &>/dev/null; then
 fi
 ###-end-pnpm-completion-###
 
+# Starship
+eval "$(starship init zsh)"
+
 # Secrets
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-eval "$(starship init zsh)"
