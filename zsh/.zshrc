@@ -98,14 +98,13 @@ export EDITOR=nvim
 # Edit configuration files
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzshconfig="nvim ~/.oh-my-zsh"
-alias config="nvim ~/dotfiles"
+alias dotfiles="nvim ~/dotfiles"
 ## Aliases
 alias v="ls -al"
 alias vim="nvim"
 alias cat="bat"
 # Neovim
 alias n="nvim"
-alias nz='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
 # eza
 alias l="eza --icons"
 alias ls="eza --icons"
