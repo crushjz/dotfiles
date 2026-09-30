@@ -137,10 +137,6 @@ if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
   export PATH=`gem environment gemdir`/bin:$PATH
 fi
 
-
-# Prettier experimental CLI
-# export PRETTIER_EXPERIMENTAL_CLI=1
-
 # Python
 export PATH="$PATH:/Users/cesare.puliatti/Library/Python/3.11/bin"
 
