@@ -6,3 +6,5 @@ font-family = JetBrains Mono
 
 # Shift + Enter: creates a new line
 keybind = shift+enter=text:\x1b\r
+
+mouse-scroll-multiplier = 0.375
