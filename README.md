@@ -4,6 +4,8 @@ My personal dotfiles.
 
 > dotfiles: configuration files that are used to customize and personalize your system.
 
+<img src="./terminal-showcase.png" width="1200" />
+
 # Tools
 
 - [Aerospace](https://aerospace.dev/) as the tiling window manager (MacOS).
