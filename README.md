@@ -18,21 +18,20 @@ My personal dotfiles.
 
 # Installation
 
-Clone the repository into your home directory and enter it:
+Clone the repository into your home directory. Then enter the directory.
 
 ```bash
 git clone <repository-url> "$HOME/dotfiles"
 cd "$HOME/dotfiles"
 ```
 
-Preview and install all managed packages:
+Make sure that the preview lists the packages that you want. The `-n` flag prints the result and makes no change.
 
 ```bash
 stow -n -v aerospace ghostty karabiner kitty lazygit nvim starship tmux zsh
-stow aerospace ghostty karabiner kitty lazygit nvim starship tmux zsh
 ```
 
-Install only selected packages by passing their names to Stow:
+Run `stow` with the package names to install them. Pass all the names to install every package. Pass a few names to install only those packages.
 
 ```bash
 stow zsh tmux nvim
@@ -40,8 +39,7 @@ stow zsh tmux nvim
 
 ## Stow Packages
 
-Each managed tool is an independent GNU Stow package. The package directory
-mirrors the path where its files belong under `$HOME`:
+Each managed tool is its own GNU Stow package. A package is a directory that copies the layout of your home directory. The path of a file in the package is the path where that file belongs under `$HOME`:
 
 ```text
 aerospace/.config/aerospace/
@@ -55,13 +53,10 @@ tmux/.tmux.conf
 zsh/.zshrc
 ```
 
-The repository does not symlink the entire `~/.config` directory. Instead,
-`~/.config` is a normal directory containing the selected Stow-managed links
-alongside unmanaged application configuration.
+Stow does not symlink the whole `~/.config` directory. For each managed file, Stow makes one symlink inside `~/.config`. The directory stays normal, so the Stow symlinks and your own files live together.
 
-Manage individual packages as needed:
+To remove a symlink, run `stow -D` with the package name:
 
 ```bash
-stow nvim
 stow -D ghostty
 ```
