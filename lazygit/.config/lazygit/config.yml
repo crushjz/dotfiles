@@ -4,3 +4,7 @@
 git:
   # If true, periodically fetch from remote
   autoFetch: false
+
+  # http://hello.com
+  diffRenderers:
+    - command: delta --{{colorScheme}} --paging=never --line-numbers
