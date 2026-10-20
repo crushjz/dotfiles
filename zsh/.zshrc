@@ -74,7 +74,6 @@ plugins=(
     git
     nvm
     yarn
-    volta
     docker
     ansible
     brew
@@ -150,25 +149,11 @@ if ! typeset -f zvm_after_init_commands &>/dev/null; then
   eval "$(atuin init zsh)"
 fi
 
-# Volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export VOLTA_FEATURE_PNPM=1
-
 # Android platform tools
 export PATH="/Users/cesare.puliatti/dev/platform-tools:$PATH"
 
 # Zoxide
 eval "$(zoxide init zsh)"
-
-# https://github.com/context-labs/uwu
-uwu() {
-  local cmd
-  cmd="$(uwu-cli "$@")" || return
-  vared -p "" -c cmd
-  print -s -- "$cmd"   # add to history
-  eval "$cmd"
-}
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/cesare.puliatti/.cache/lm-studio/bin"
