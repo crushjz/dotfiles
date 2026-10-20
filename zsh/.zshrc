@@ -86,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export NODE_OPTIONS="--max_old_space_size=8192"
+export XDG_CONFIG_HOME="$HOME/.config" # Used for lazygit
 export EDITOR=nvim
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -118,8 +118,6 @@ alias lta1="eza -lTag --level=1 --icons"
 alias lta2="eza -lTag --level=2 --icons"
 alias lta3="eza -lTag --level=3 --icons"
 
-# Used for lazygit
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
