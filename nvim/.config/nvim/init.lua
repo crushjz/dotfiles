@@ -210,7 +210,7 @@ Plug('nvim-treesitter/nvim-treesitter', { ['branch'] = 'main', ['do'] = ':TSUpda
 Plug('nvim-treesitter/nvim-treesitter-textobjects', { ['branch'] = 'main' })
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'folke/ts-comments.nvim'
-Plug 'mrjones2014/smart-splits.nvim'
+Plug 'smart-splits-nvim/smart-splits.nvim'
 Plug('nvim-telescope/telescope.nvim', { ['branch'] = 'master' })
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 Plug 'nvim-lualine/lualine.nvim'
